@@ -1,0 +1,178 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8082",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/card/setUsingCard": {
+            "put": {
+                "tags": [
+                    "controller-card-date"
+                ],
+                "operationId": "setIsingCard",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CardData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CardData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/card/importFileCsv": {
+            "post": {
+                "tags": [
+                    "controller-card-date"
+                ],
+                "operationId": "importFileCsv",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseEntityResultImport"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/card/getFreeCard": {
+            "get": {
+                "tags": [
+                    "controller-card-date"
+                ],
+                "operationId": "getFreeCard",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CardData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/card/getCardByNumber/{cardNumber}": {
+            "get": {
+                "tags": [
+                    "controller-card-date"
+                ],
+                "operationId": "getCardByNumber",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CardData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/card/getAll": {
+            "get": {
+                "tags": [
+                    "controller-card-date"
+                ],
+                "operationId": "getAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CardData"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CardData": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "cardNumber": {
+                        "type": "string"
+                    },
+                    "isUsing": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ResponseEntityResultImport": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "errCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            }
+        }
+    }
+}

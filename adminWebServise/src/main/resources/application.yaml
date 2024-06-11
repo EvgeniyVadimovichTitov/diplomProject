@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: adminWebServiseApp
+server:
+  port: 7777
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:4433/eureka

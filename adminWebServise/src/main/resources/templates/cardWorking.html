@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Работа с картами</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form id="formElem" >
+    <a class="animated-button1" target="_blank">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <input type="File" name="file" accept="txt/*" class="animated-button1">
+</a>
+
+    <a class="animated-button1" target="_blank">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <input type="submit" class="animated-button1">
+    </a>
+</form>
+<script>
+    formElem.onsubmit = async(e) => {
+        e.preventDefault();
+
+        let response = await fetch('http://localhost:8082/api/v1/card/importFileCsv', {
+            method: 'POST',
+            body: new FormData(formElem)
+
+        });
+        result = await response.json()
+        alert(result.description);
+
+        location.reload(true);
+<!--        console.log(await response.json()); для вывода в консоль браузера-->
+
+    };
+</script>
+<h1 class="custom-colored-h1">КАРТЫ</h1>
+<table class="table">
+    <tr>
+        <th style="text-align:center">Идентификатор</th>
+        <th style="text-align:center">номер карты</th>
+        <th style="text-align:center">выдана клиенту</th>
+    </tr>
+    </tr>
+    <tr th:each="card : ${cards}">
+        <td th:text="${card.id}"></td>
+        <td th:text="${card.cardNumber}"></td>
+        <td th:text="${card.isUsing}"></td>
+    </tr>
+</table>
+</body>
+</html>

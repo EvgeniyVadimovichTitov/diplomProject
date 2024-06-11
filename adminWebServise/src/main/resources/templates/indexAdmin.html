@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Bank</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav class="navbar">
+        <h1>Panel Administration for project the BANK</h1>
+        <ul>
+            <li sec:authorize="!isAuthenticated()" class="nav-item"><a href="/login">Login</a></li>
+            <li sec:authorize="isAuthenticated()">
+                    <a href="/logout" class="animated-button1">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        LOGOUT
+                    </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<a href="http://localhost:4433/" class="animated-button1" target="_blank">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Eurika
+</a>
+<a href="/cardWorking" class="animated-button1" target="_blank">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Work with card
+</a>
+<a href="http://localhost:3000/" class="animated-button1" target="_blank">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Grafana main
+</a>
+<a href="http://localhost:3000/goto/jSg8niUIR?orgId=1" class="animated-button1" target="_blank">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Grafana DashBoard
+</a>
+<div id="footer">
+    <p class="center">&#169; Special for diplom's project GB</p>
+</div>
+</body>
+</html>

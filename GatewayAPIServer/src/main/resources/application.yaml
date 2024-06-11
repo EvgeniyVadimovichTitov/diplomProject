@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: GatewayAPIServerApp
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  http:
+    multipart:
+      enabled: true
+      location: /upload
+  cloud:
+    gateway:
+      routes:
+        - id: cardSevise
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/api/v1/card/**
+        - id: productProfileServiseApp
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/api/v1/profile/**
+server:
+  port: 8080
+  context-path: /plts
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:4433/eureka

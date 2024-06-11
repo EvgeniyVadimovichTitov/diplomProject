@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>личный кабинет</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<a href="/logout" class="animated-button1" type="submit">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Выйти
+</a>
+<a href="/bank" class="animated-button1" type="submit">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    На главную
+</a>
+<h1 class="custom-colored-h1">КАРТЫ</h1>
+<form action="/createNewProduct"
+      method="POST">
+    <button type="submit">Открыть новый продукт</button>
+</form>
+<table class="table">
+    <tr>
+        <th>Наименование</th>
+        <th>Номер карты</th>
+        <th>Баланс</th>
+    </tr>
+    <tr th:each="p: ${products}">
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.number}"></td>
+        <td th:text="${p.balance}"></td>
+    </tr>
+</table>
+</body>
+</html>

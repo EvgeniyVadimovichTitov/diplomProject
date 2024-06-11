@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: cardServiseAPP
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  http:
+    multipart:
+      enabled: true
+      location: /upload
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+server:
+  port: 8082
+  context-path: /plts
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:4433/eureka
